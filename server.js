@@ -5,7 +5,13 @@ configDotenv();
 const app=express();
 app.use(express.json());
 const port=process.env.PORT || 8000
-
+app.get('/',(req,res)=>{
+    try{
+     return res.status(200).json({status:true,message:"Server is runing"})
+    }catch(err){
+        return res.status(500).json({status:false,message:'Internal server error'})
+    }
+})
 app.post("/api/mail",async(req,res)=>{
     try{
     const {email,phone,fullName,websiteURL,industry,message}=req?.body;
