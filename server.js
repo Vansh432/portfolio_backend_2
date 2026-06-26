@@ -1,8 +1,10 @@
 import express from 'express'
 import { configDotenv } from 'dotenv';
 import { sendEnquiryMail } from './infrastructure/mail/mail.services.js';
+import cors from 'cors'
 configDotenv();
 const app=express();
+app.use(cors())
 app.use(express.json());
 const port=process.env.PORT || 8000
 app.get('/',(req,res)=>{
